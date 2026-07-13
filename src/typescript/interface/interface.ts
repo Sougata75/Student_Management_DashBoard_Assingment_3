@@ -30,3 +30,32 @@ export interface StudentListType {
   enrolled_courses: string[];
   $createdAt: string,
 }
+
+export interface CoursePayload {
+  course_name: string;
+  course_description: string;
+  course_code?: string;
+}
+
+export interface CourseSubject {
+  id: string;
+  name: string;
+  overview: string;
+}
+
+export interface CourseInterface {
+  $id: string;
+  course_name:string;
+  course_description:string;
+  course_code:string;
+  enrolled_students: string[] | any[];
+  course_subjects:CourseSubject[];
+  $createdAt:string;
+  $updatedAt:string;
+}
+
+export interface SubjectPayload {
+  semister: string;
+  subject: string;
+  overview: string;
+}

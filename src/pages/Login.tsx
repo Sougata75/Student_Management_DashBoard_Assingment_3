@@ -1,5 +1,5 @@
 import { Box, Button, CircularProgress, TextField } from "@mui/material"
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import type {LoginPyaload}  from "../typescript/interface/interface";
@@ -9,6 +9,7 @@ import { account, tablesDB } from "../lib/appwrite.config";
 import { Query } from "appwrite";
 import Cookies from "js-cookie";
 import { toast } from "sonner";
+import CreateUserContext from "../contextApi/appwriteDataFetching/CreateApwriteContext";
 
 
 const Login = () => {
@@ -17,6 +18,8 @@ const Login = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
+
+  const fetchContext = useContext(CreateUserContext);
 
   const {register,reset,formState:{errors},handleSubmit} = useForm<LoginPyaload>({
     resolver: yupResolver(loginSchema),
@@ -38,6 +41,7 @@ const Login = () => {
         });
 
         if(user?.rows?.length > 0){
+          fetchContext?.userData();
           const userData = user.rows[0];
 
           Cookies.set("token", "true");

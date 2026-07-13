@@ -3,20 +3,24 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import type { SignupPayload } from "../typescript/interface/interface";
 import { signupSchema } from "../services/validation/signup.validation";
-import { useState } from "react";
-import { account, ID, tablesDB } from "../lib/appwrite.config";
-import { toast } from "sonner";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { ID } from "appwrite";
+import { account, tablesDB } from "../lib/appwrite.config";
+import CreateUserContext from "../contextApi/appwriteDataFetching/CreateApwriteContext";
 
 
 const Registration = () => {
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState("");
+
     const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(""); 
+    const fetchContext = useContext(CreateUserContext);
 
-    const {register,reset,formState:{errors},handleSubmit} = useForm<SignupPayload>({
+const {register,reset,formState:{errors},handleSubmit} = useForm<SignupPayload>({
     resolver: yupResolver(signupSchema),
     defaultValues: {
         name: "",
@@ -28,7 +32,7 @@ const Registration = () => {
     },
 });
 
-const onSubmit = async (data: SignupPayload) => {
+const onSubmit = async (data:SignupPayload) => {
     setIsLoading(true);
     try {
         const user = await account.create(
@@ -59,16 +63,19 @@ const onSubmit = async (data: SignupPayload) => {
         if(response){
             toast.success("Registration Successfull");
             reset();
-            navigate("/dashboard")
+            fetchContext?.userData();
+            navigate("/dashboard");
         }
     } catch (error:any) {
         setIsError(error.message);
         console.log(isError);
         toast.error(error.message);
+        setIsLoading(false);
     } finally{
         setIsLoading(false);
     }
 };
+
 
 
 
@@ -86,7 +93,7 @@ const onSubmit = async (data: SignupPayload) => {
             <TextField label="Password" className="w-full" placeholder="Enter your password" {...register("password")}
         error={!!errors.name}
         helperText={errors.name?.message}/>
-            <Button type="submit" variant="contained" disabled={isLoading}>{isError? <CircularProgress/> :"Register"}</Button>
+            <Button type="submit" variant="contained" disabled={isLoading}>{isLoading? <CircularProgress/> :"Register"}</Button>
         </Box>
   )
 }

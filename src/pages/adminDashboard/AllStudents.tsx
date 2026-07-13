@@ -4,7 +4,6 @@ import { EditIcon, Search } from "lucide-react";
 import type { StudentListType } from "../../typescript/interface/interface";
 import { columnName, userRoleSelection } from "../../services/json/studentManagement.table";
 import { Controller, useForm } from "react-hook-form";
-
 import CreateUserContext from "../../contextApi/appwriteDataFetching/CreateApwriteContext";
 
 
@@ -22,6 +21,12 @@ function AllStudents() {
   if(!userContext){
     throw new Error("User context not provided");
   }
+
+  useEffect(() => {
+    if(userContext.studentList.length === 0){
+      userContext.userData();
+    }
+  },[])
 
   const {register:registerEdit,handleSubmit:handleSubmitEdit,reset:resetEdit,control,watch,setValue} = useForm<StudentListType>();
 

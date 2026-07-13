@@ -37,7 +37,7 @@ function Navbar() {
       <Box>
         <Typography onClick={() => hambuergerContext?.sethambuerger((prev) => !prev)} className={`${hambuergerContext?.hambuerger? "bg-slate-900":""} cursor-pointer md:hidden text-white bg-slate-500 px-2 py-1 md:p-2 rounded-md shadow-md shadow-black/30`}><LayoutGridIcon /></Typography>
       </Box>
-        <Box className="flex justify-between w-[38%]  md:w-[15%] items-center">
+        <Box className="flex justify-between w-[38%]  md:w-[12.5%] items-center">
             <Typography className="text-white bg-blue-600 hover:bg-blue-800 border border-gray-400 px-2 py-1 md:p-2 rounded-md md:rounded-lg shadow-md shadow-black/30 hover:shadow-blue-600 "><BellDot/></Typography>
             <Typography className="hidden md:block text-white bg-blue-600 hover:bg-blue-800 border border-gray-400 px-2 py-1 md:p-2 rounded-md md:rounded-lg shadow-md shadow-black/30 hover:shadow-green-600 ">Help Center</Typography>
             <Typography className="block md:hidden text-white bg-blue-600 hover:bg-blue-800 border border-gray-400 px-2 py-1 md:p-2 rounded-md md:rounded-lg shadow-md shadow-black/30 hover:shadow-green-600 "><FileQuestionMarkIcon/></Typography>
