@@ -46,6 +46,7 @@ const Login = () => {
 
           Cookies.set("token", "true");
           Cookies.set("role", userData.role);
+          Cookies.set("auth_user_id", userData.auth_user_id);
           Cookies.set("user", JSON.stringify(userData));
 
           if(userData.role === "Admin"){

@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { ID } from "appwrite";
 import { account, tablesDB } from "../lib/appwrite.config";
 import CreateUserContext from "../contextApi/appwriteDataFetching/CreateApwriteContext";
+import Cookies from "js-cookie";
 
 
 const Registration = () => {
@@ -61,6 +62,12 @@ const onSubmit = async (data:SignupPayload) => {
             },
         });
         if(response){
+
+          Cookies.set("token", "true");
+          Cookies.set("role", response.role);
+          Cookies.set("auth_user_id", response.auth_user_id);
+          Cookies.set("user", JSON.stringify(response));
+
             toast.success("Registration Successfull");
             reset();
             fetchContext?.userData();

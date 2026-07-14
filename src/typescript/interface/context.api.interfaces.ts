@@ -14,6 +14,7 @@ export interface UserContextType {
     updateUser: (data:StudentListType) => void;
     hambuerger: boolean;
     sethambuerger: React.Dispatch<React.SetStateAction<boolean>>;
+    individualPerson:StudentListType | null;
     userData: () => void;
 }
 

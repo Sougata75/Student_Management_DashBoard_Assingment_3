@@ -46,7 +46,7 @@ function Navbar() {
         </Box>
     </Box>
 
-    <Box className={`${hambuergerContext?.hambuerger? "translate-x-[0] block ":"translate-x-[-160px]"} transition-all duration-[250ms] left-0 absolute w-[150px] h-[92.6vh] bg-white/30 backdrop-blur-md z-20`}>
+    <Box className={`${hambuergerContext?.hambuerger? "translate-x-[0] block ":"translate-x-[-160px]"} transition-all duration-[250ms] left-0 absolute w-[150px] h-[91vh] bg-white/30 backdrop-blur-md z-20`}>
 
 {adminSidebar?.map((nav) => (
             <NavLink key={nav.label} to={nav.path}>

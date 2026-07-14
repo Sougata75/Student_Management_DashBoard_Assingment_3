@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { tablesDB } from "../../lib/appwrite.config";
 import { Query } from "appwrite";
 import CreateUserContext from "./CreateApwriteContext";
 import type { StudentListType } from "../../typescript/interface/interface";
 import { toast } from "sonner";
+import Cookies from "js-cookie";
 
 const AppwriteContextProvider = ({
   children,
@@ -17,6 +18,7 @@ const AppwriteContextProvider = ({
   const [isEdit, setisEdit] = useState<boolean>(false);
   const [editMode, seteditMode] = useState<StudentListType[]>([]);
   const [hambuerger, sethambuerger] = useState<boolean>(false);
+  const [individualPerson,setindividualPerson] = useState<StudentListType | null>(null);
 
   const userData = async () => {
     setisLoading(true);
@@ -35,6 +37,17 @@ const AppwriteContextProvider = ({
       setisLoading(false);
     }
   };
+
+  useEffect(() => {
+    const userID = Cookies.get("auth_user_id");
+   if(userID && studentList.length>0){
+        const targetUser = studentList.find((i) => i.auth_user_id === userID);
+        
+        if(targetUser){
+          setindividualPerson(targetUser as unknown as StudentListType);
+        }
+   };
+  },[studentList]);
 
   const searchFunc = (data: { searchData: string } | undefined) => {
     const searchTerm = data?.searchData.toLowerCase() || "";
@@ -83,6 +96,7 @@ const AppwriteContextProvider = ({
             name: data.name,
             phone: data.phone,
             role: data.role,
+            enrolled_courses: data.enrolled_courses,
             isBlocked: data.isBlocked,
           },
         });
@@ -127,6 +141,7 @@ const AppwriteContextProvider = ({
           hambuerger,
           sethambuerger,
           userData,
+          individualPerson
         }}
       >
         {children}

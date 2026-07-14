@@ -27,7 +27,7 @@ export interface StudentListType {
   role: string,
   isBlocked: boolean,
   auth_user_id: string,
-  enrolled_courses: string[];
+  enrolled_courses?: string[];
   $createdAt: string,
 }
 
