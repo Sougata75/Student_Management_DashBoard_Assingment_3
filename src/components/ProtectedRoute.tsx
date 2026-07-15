@@ -29,7 +29,7 @@ const ProtectedRoute = ({allowedRole}:{allowedRole:string}) => {
       Cookies.remove("token");
       Cookies.remove("role");
       Cookies.remove("user");
-      navigation("/");
+      navigation("/accessDenied");
       toast.error("Access denied");
     } catch (error) {
       toast.error("Someting is going wrong");

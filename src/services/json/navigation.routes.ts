@@ -19,7 +19,7 @@ export const sideBarItems: BarItems[] = [
             },
             {
                 path:"/calender",
-                label: "Calender"
+                label: "Calendar"
             },
             {
                 path:"/announcement",

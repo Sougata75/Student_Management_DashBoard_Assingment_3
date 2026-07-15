@@ -14,11 +14,20 @@ import BatchManagement from "../pages/adminDashboard/BatchManagement";
 import CourseAdd from "../pages/adminDashboard/CourseAdd";
 import Announce from "../pages/adminDashboard/Announce";
 import ProtectedRoute from "../components/ProtectedRoute";
+import NotFound from "../pages/NotFound";
+import ErrorBoundery from "../pages/ErrorBoundery";
+import BlockedPage from "../pages/BlockedPage";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement:<ErrorBoundery/>
+  },
+  {
+    path:"/accessDenied",
+    element:<BlockedPage/>,
+    errorElement:<ErrorBoundery/>
   },
   {
     path: "",
@@ -31,26 +40,32 @@ const Routes = createBrowserRouter([
           {
             path: "/dashboard",
             element: <StudentDashboard />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/calender",
             element: <Calender />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/courses",
             element: <Courses />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/myProfile",
             element: <Myprofile />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/batch",
             element: <Batch />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/announcement",
             element: <AnnounceMent />,
+            errorElement:<ErrorBoundery/>
           },
         ],
       },
@@ -67,27 +82,36 @@ const Routes = createBrowserRouter([
           {
             path: "/adminDashboard",
             element: <Dashboard />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/studentsAll",
             element: <AllStudents />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/batches",
             element: <BatchManagement />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/manageCourses",
             element: <CourseAdd />,
+            errorElement:<ErrorBoundery/>
           },
           {
             path: "/announce",
             element: <Announce />,
+            errorElement:<ErrorBoundery/>
           },
         ],
       },
     ],
   },
+  {
+    path:"*",
+    element:<NotFound/>
+  }
 ]);
 
 export default Routes;
