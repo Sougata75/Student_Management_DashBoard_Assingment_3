@@ -28,6 +28,7 @@ const ProtectedRoute = ({allowedRole}:{allowedRole:string}) => {
 
       Cookies.remove("token");
       Cookies.remove("role");
+      Cookies.remove("auth_user_id");
       Cookies.remove("user");
       navigation("/accessDenied");
       toast.error("Access denied");
@@ -37,17 +38,17 @@ const ProtectedRoute = ({allowedRole}:{allowedRole:string}) => {
     }
   };
 
-   if(isStudent && actualUser?.isBlocked === true){
+   if(isStudent && actualUser?.isBlocked === true || !token){
     handleLogout();
    }
     }
-    },[isStudent, actualUser?.isBlocked, ]);
+
+    },[isStudent, actualUser?.isBlocked, token]);
 
     if(isStudent && actualUser?.isBlocked === true){
             return null;
     };
 
-    
     if(!token){
         return <Navigate to="/"/>;
     };

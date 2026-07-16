@@ -97,7 +97,7 @@ const onSubmit = async (data:SignupPayload) => {
             <TextField label="Phone number" className="w-full" placeholder="Enter your phone number" {...register("phone")}
         error={!!errors.name}
         helperText={errors.name?.message}/>
-            <TextField label="Password" className="w-full" placeholder="Enter your password" {...register("password")}
+            <TextField label="Password" className="w-full" placeholder="Enter your password" type="password" {...register("password")}
         error={!!errors.name}
         helperText={errors.name?.message}/>
             <Button type="submit" variant="contained" disabled={isLoading}>{isLoading? <CircularProgress/> :"Register"}</Button>

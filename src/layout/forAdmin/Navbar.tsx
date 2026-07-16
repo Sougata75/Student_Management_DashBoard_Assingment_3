@@ -33,7 +33,7 @@ function Navbar() {
 
   return (
    <>
-    <Box sx={{width:"100%",}} className=" p-2 py-3 md:p-3 bg-slate-950 md:bg-white border-b md:border-b-2 border-slate-400 md:border-white shadow-md shadow-gray-400 flex justify-between items-center md:justify-end" >
+    <Box sx={{width:"100%",}} className=" p-2 h-[7vh] md:h-auto md:p-3 bg-slate-950 md:bg-white border-b md:border-b-2 border-slate-400 md:border-white shadow-md shadow-gray-400 flex justify-between items-center md:justify-end" >
       <Box>
         <Typography onClick={() => hambuergerContext?.sethambuerger((prev) => !prev)} className={`${hambuergerContext?.hambuerger? "bg-slate-900":""} cursor-pointer md:hidden text-white bg-slate-500 px-2 py-1 md:p-2 rounded-md shadow-md shadow-black/30`}><LayoutGridIcon /></Typography>
       </Box>
@@ -46,7 +46,7 @@ function Navbar() {
         </Box>
     </Box>
 
-    <Box className={`${hambuergerContext?.hambuerger? "translate-x-[0] block ":"translate-x-[-160px]"} transition-all duration-[250ms] left-0 absolute w-[150px] h-[91vh] bg-white/30 backdrop-blur-md z-20`}>
+    <Box className={`${hambuergerContext?.hambuerger? "translate-x-[0] block ":"translate-x-[-160px]"} transition-all duration-[250ms] left-0 absolute w-[150px] h-[93vh] bg-white/30 backdrop-blur-md z-20`}>
 
 {adminSidebar?.map((nav) => (
             <NavLink key={nav.label} to={nav.path}>

@@ -65,6 +65,7 @@ const Login = () => {
       setIsError(error.message);
       console.log(isError);
       toast.error(error.message);
+      setIsLoading(false);
     }finally{
       setIsLoading(false);
     }
@@ -74,7 +75,7 @@ const Login = () => {
     <>
         <Box component={"form"} onSubmit={handleSubmit(onSubmit)} sx={{width:"100%",height:"auto",display:"flex", flexDirection:"column",justifyContent:"space-between", gap:"15px"}}>
             <TextField className="w-full" placeholder="Enter your email address" {...register(("email"))} error={!errors} helperText={errors.email?.message}/>
-            <TextField className="w-full" placeholder="Enter your password" {...register(("password"))} error={!errors} helperText={errors.password?.message}/>
+            <TextField className="w-full" placeholder="Enter your password" type="password" {...register(("password"))} error={!errors} helperText={errors.password?.message}/>
             <Button type="submit" variant="contained" disabled={isLoading}>{isError? <CircularProgress/> :"Log In"}</Button>
         </Box>
     </>
