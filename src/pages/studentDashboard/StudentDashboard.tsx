@@ -64,7 +64,7 @@ function StudentDashboard() {
           <Box className="w-full h-[1px] bg-black"></Box>
           <Box className="w-full flex flex-wrap justify-between px-5">
             <Typography className="!text-[16px] !text-black">Visit your profile</Typography>
-            <Typography onClick={(() => navigate("/announcement"))} className="!text-[16px] !text-black hover:!text-blue-500 cursor-pointer">View More</Typography>
+            <Typography onClick={(() => navigate("/myProfile"))} className="!text-[16px] !text-black hover:!text-blue-500 cursor-pointer">View More</Typography>
           </Box>
         </Box>
 
